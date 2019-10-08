@@ -26,6 +26,10 @@ public class AquaSimApplication
         System.out.println("This will be an aquarium simulation.");
 
         // CONSTRUCT OBJECTS NEEDED FOR THE AQUARIUM SIMULATION.
+        Random generator = new Random();
+        int randNUM;
+        randNUM = generator.nextInt(10);
+        randNUM  = generator.nextInt(10);
 
         // Construct the aquarium.  Specify its dimensions when creating it.
         Aquarium aqua;                 // create reference to an Aquarium ...
@@ -33,14 +37,16 @@ public class AquaSimApplication
 
         // Construct fish and add them to the aquarium.
         //      CODE MISSING HERE!
-        AquaFish Nemo = new AquaFish(aqua);
+        AquaFish Nemo = new AquaFish(aqua, Color.RED);
         aqua.add(Nemo);
      
-        AquaFish Dory = new AquaFish(aqua);
+        AquaFish Dory = new AquaFish(aqua, Color.BLUE);
         aqua.add(Dory);
     
-        AquaFish LOL = new AquaFish(aqua);
+        AquaFish LOL = new AquaFish(aqua, Color.BLUE);
         aqua.add(LOL);
+        
+        
     
         // Construct a graphical user interface (GUI) to display and control
         // the simulation.  The user interface needs to know about the
@@ -59,19 +65,31 @@ public class AquaSimApplication
 
 
         // RUN THE AQUARIUM SIMULATION.
-
+       userInterface.println ("Close GUI display window to quit.");
         // Make the fish move and redisplay.
         //      CODE MISSING HERE!
+        for(;;)
+        {
         Nemo.moveForward();
+        if(Nemo.atWall()){
+           Nemo.changeDir();
+        }
         Dory.moveForward();
-        LOL.moveForwad();
+        if(Dory.atWall()){
+            Dory.changeDir();
+        }
+        LOL.moveForward();
+        if(LOL.atWall()){
+            LOL.changeDir();
+           }
+        userInterface.showAquarium();
+    }
+       // WRAP UP.
 
+       // Remind user how to quit application.
+        
+        
+        //end main
 
-        // WRAP UP.
-
-        // Remind user how to quit application.
-        userInterface.println ("Close GUI display window to quit.");
-
-    }//end main
-
-}//end class
+   }//end class
+}
