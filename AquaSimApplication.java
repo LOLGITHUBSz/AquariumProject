@@ -39,23 +39,21 @@ public class AquaSimApplication
         // Construct fish and add them to the aquarium.
         //      CODE MISSING HERE!
         
-        
-        AquaFish Nemo = new AquaFish(aqua, Color.RED);
+        AquaFish Nemo = new AquaFish(aqua,getColor());
         aqua.add(Nemo);
-     
-        AquaFish Dory = new AquaFish(aqua, Color.BLUE);
+        
+        AquaFish Dory = new AquaFish(aqua,getColor());
         aqua.add(Dory);
-    
-        AquaFish LOL = new AquaFish(aqua, Color.BLUE);
+        
+        AquaFish LOL = new AquaFish(aqua,getColor());
         aqua.add(LOL);
-        
-        
+     
     
         // Construct a graphical user interface (GUI) to display and control
         // the simulation.  The user interface needs to know about the
         // aquarium, so we pass aqua to the user interface constructor.
         AquaSimGUI userInterface;              // create reference to GUI ...
-        userInterface = new AquaSimGUI(aqua);  // ... and then GUI itself
+        userInterface = new AquaSimGUI(aqua,true);  // ... and then GUI itself
 
         // Tell the user how to start the aquarium simulation.
         System.out.println("Press the Start button to start the simulation.");
@@ -71,7 +69,9 @@ public class AquaSimApplication
        userInterface.println ("Close GUI display window to quit.");
         // Make the fish move and redisplay.
         //      CODE MISSING HERE!
-        for(;;)
+        
+        
+        for (int steps=0;steps<userInterface.getNumberOfSteps();steps++)
         {
         Nemo.moveForward();
         if(Nemo.atWall()){
@@ -93,8 +93,8 @@ public class AquaSimApplication
         
         
     }//end main
-      public static Color getColor()
-      {
+       public static Color getColor()
+    {
        int randNum = generator.nextInt(10);
      if (randNum==0)
           return Color.RED;
@@ -116,8 +116,7 @@ public class AquaSimApplication
           return Color.BLACK;
           else if (randNum==9)
           return Color.WHITE;
-          else if (randNum==10)
+          else
           return Color.PINK;
-   //end class
     }
-}
+}//end class
